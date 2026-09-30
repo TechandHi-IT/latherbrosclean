@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+  --ink: #1d1d1f;
+  --muted: #6e6e73;
+  --line: #e5e5ea;
+  --paper: #ffffff;
+  --soft: #f2f4f4;
+  --teal: #0f6f6a;
+  --teal-deep: #0c5c58;
+  --gold: #c6a15b;
+  --gold-soft: #f6efe0;
+  --page: #f4f6f6;
+  --choice-selected: #0f6f6a;
+  --input-fill: #f2f2f7;
+  --accent: var(--teal);
+  --accent-2: var(--gold);
+  --submit-hover: var(--teal-deep);
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-paper: var(--paper);
+  --color-soft: var(--soft);
+  --color-teal: var(--teal);
+  --color-teal-deep: var(--teal-deep);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-page: var(--page);
+  --color-choice-selected: var(--choice-selected);
+  --color-input-fill: var(--input-fill);
+  --color-accent: var(--teal);
+  --color-accent-2: var(--gold);
+  --color-submit-hover: var(--teal-deep);
+  --font-sans: var(--font-inter);
+}
+
+html,
+body {
+  min-height: 100%;
+  background:
+    radial-gradient(900px 420px at 50% -80px, rgba(15, 111, 106, 0.08), transparent 60%),
+    var(--page);
+  color: var(--ink);
+}
+
+body {
+  font-family:
+    var(--font-inter),
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.step-enter {
+  animation: step-in 0.32s ease both;
+}
+
+@keyframes step-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.toggle {
+  appearance: none;
+  width: 51px;
+  height: 31px;
+  flex-shrink: 0;
+  border: 0;
+  border-radius: 999px;
+  background: #e5e5ea;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.toggle::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+  transition: transform 0.2s ease;
+}
+
+.toggle:checked {
+  background: var(--teal);
+}
+
+.toggle:checked::after {
+  transform: translateX(20px);
+}
+
+.toggle:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: #e6eaea;
+}
+
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 100%
+  );
+  animation: shimmer 1.35s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .step-enter {
+    animation: none;
+  }
+
+  .skeleton::after,
+  .toggle,
+  .toggle::after {
+    animation: none;
+    transition: none;
+  }
+}
